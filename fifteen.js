@@ -24,12 +24,12 @@ $(document).ready( function () {
 			position(i,3);	
 		}
 	}
-	
+
 	function clear(){
 		$(this).addClass('puzzlepiece');
 		$(this).removeClass('movablepiece');
 	}
-	
+
 	//Shows if the tile is movable
 	function movable(){
 		if(!progress){
@@ -93,7 +93,7 @@ $(document).ready( function () {
 		var last;
 		$('body').css('cursor', 'progress');
 		//Run the loop for 150 times to shuffle the board.
-		var num=150;
+		var num=300;
 		for(var i =0; i < num; i++){
 		//Generate a random value between 1 to 15.                                     
 			var randVal = parseInt(1 + (Math.random() * (14)));
@@ -102,20 +102,16 @@ $(document).ready( function () {
 			var ileft = parseInt($('div:nth-child('+randVal+')'+'.puzzlepiece').css('left'));           
 			var iemptytop = space[0]*100;             
 			var iemptyleft = space[1]*100;           
-			console.log("top "+itop);
-			console.log("left "+ileft);
 
 			var irow = getY(itop);                          
 			var icolumn = getX(ileft);
 			var iemptyrow = getY(iemptytop);               
 			var iemptycolumn = getX(iemptyleft);
-			console.log(irow+" "+icolumn);
-			console.log(iemptyrow+" "+iemptycolumn);
 		 
 			if (irow == iemptyrow && last != randVal) {        
 				var diff = icolumn - iemptycolumn;
 				if (diff == 1 || diff == -1) {
-					$('div:nth-child('+randVal+')'+'.puzzlepiece').animate({ left: iemptyleft }, 50);
+					$('div:nth-child('+randVal+')'+'.puzzlepiece').animate({ left: iemptyleft }, 150);
 					$('div:nth-child('+randVal+')'+'.puzzlepiece').css('left', iemptyleft);
 					space[1] = space[1]+diff;                
 				}
@@ -124,7 +120,7 @@ $(document).ready( function () {
 			else if (icolumn == iemptycolumn && last != randVal) {   
 				var diff = irow - iemptyrow;
 				if (diff == 1 || diff == -1) {
-					$('div:nth-child('+randVal+')'+'.puzzlepiece').animate({ top: iemptytop }, 50);
+					$('div:nth-child('+randVal+')'+'.puzzlepiece').animate({ top: iemptytop }, 150);
 					$('div:nth-child('+randVal+')'+'.puzzlepiece').css('top', iemptytop);
 					space[0] = space[0]+diff;                     
 				}
